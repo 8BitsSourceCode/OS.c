@@ -1,0 +1,76 @@
+/* fork system call */
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+
+int main()
+{
+    int id, childid;
+    id = getpid();
+
+    if ((childid = fork()) > 0)  
+    {
+        printf("\n i am in the parent process %d", id);
+        printf("\n i am in the parent process %d", getpid());
+        printf("\n i am in the parent process %d\n", getppid());
+    }
+    else if (childid == 0)  
+    {
+        printf("\n i am in child process %d", id);
+        printf("\n i am in the child process %d", getpid());
+        printf("\n i am in the child process %d", getppid());
+    }
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------------------
+
+
+/* wait system call */
+#include <stdlib.h>
+#include <errno.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main(void)
+{
+    pid_t pid;
+    int rv;
+
+    pid = fork();
+
+    if (pid < 0) {
+        perror("fork");
+        exit(1);
+    } 
+    else if (pid == 0) {
+        printf("\nCHILD: This is the child process!\n");
+        fflush(stdout);
+        printf("\nCHILD: My PID is %d\n", getpid());
+        printf("\nCHILD: My parent's PID is %d\n", getppid());
+        printf("\nCHILD: Enter my exit status (make it small):\n ");
+        scanf("%d", &rv);
+        printf("\nCHILD: I'm outta here!\n");
+        exit(rv);
+    } 
+    else {
+        printf("\nPARENT: This is the parent process!\n");
+        printf("\nPARENT: My PID is %d\n", getpid());
+        fflush(stdout);
+
+        wait(&rv);
+
+        printf("\nPARENT: My child's PID is %d\n", pid);
+        printf("\nPARENT: I'm now waiting for my child to exit()...\n");
+        fflush(stdout);
+
+        printf("\nPARENT: My child's exit status is: %d\n", WEXITSTATUS(rv));
+        printf("\nPARENT: I'm outta here!\n");
+    }
+
+    return 0;
+}
+

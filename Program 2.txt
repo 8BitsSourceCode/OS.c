@@ -1,0 +1,46 @@
+/* exit system call */
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+int main(void)
+{
+    int i, pid;
+
+    pid = fork();
+
+    if (pid == -1) {
+        printf("fork failed");
+        exit(0);
+    }
+    else if (pid == 0) {
+        printf("\nChild process starts");
+        for (i = 0; i < 5; i++) {
+            printf("\nChild process %d is called", i);
+        }
+        printf("\nChild process ends\n");
+    }
+    else {
+        wait(0);
+        printf("\nParent process ends\n");
+    }
+
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------------------
+
+/* execl system call */
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+   printf("Before execl\n");
+   execv("/bin/ls", argv);
+   printf("after execv\n");
+   return 0;
+}

@@ -1,0 +1,65 @@
+/* Program to demonstrate various thread related concepts */
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+int N;
+
+void *sum_natural(void *arg) {
+    int sum = 0;
+    for (int i = 1; i <= N; i++)
+        sum += i;
+    printf("The sum of first N natural nos is %d\n", sum);
+    pthread_exit(NULL);
+}
+
+void *sum_even(void *arg) {
+    int sum = 0;
+    for (int i = 2; i <= N; i += 2)
+        sum += i;
+    printf("The sum of first N even natural nos is %d\n", sum);
+    pthread_exit(NULL);
+}
+
+void *sum_odd(void *arg) {
+    int sum = 0;
+    for (int i = 1; i <= N; i += 2)
+        sum += i;
+    printf("The sum of first N odd natural nos is %d\n", sum);
+    pthread_exit(NULL);
+}
+
+void *print_even(void *arg) {
+    printf("The first N even natural nos is----\n");
+    for (int i = 2; i <= N; i += 2)
+        printf("%d\n", i);
+    pthread_exit(NULL);
+}
+
+void *print_odd(void *arg) {
+    printf("The first N odd natural nos is----\n");
+    for (int i = 1; i <= N; i += 2)
+        printf("%d\n", i);
+    pthread_exit(NULL);
+}
+
+int main() {
+    pthread_t t1, t2, t3, t4, t5;
+
+    printf("Enter a number\n");
+    scanf("%d", &N);
+
+    pthread_create(&t1, NULL, sum_natural, NULL);
+    pthread_create(&t2, NULL, sum_even, NULL);
+    pthread_create(&t3, NULL, sum_odd, NULL);
+    pthread_create(&t4, NULL, print_even, NULL);
+    pthread_create(&t5, NULL, print_odd, NULL);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+    pthread_join(t3, NULL);
+    pthread_join(t4, NULL);
+    pthread_join(t5, NULL);
+
+    return 0;
+}

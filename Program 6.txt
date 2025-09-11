@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    char pn[10][10];
+    int arr[10], bur[10];
+    int start[10], finish[10], tat[10], wt[10];
+    int i, n;
+    int totwt = 0, tottat = 0;
+
+    printf("Enter the number of processes:");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        fprintf(stderr, "Invalid number of processes\n");
+        return 1;
+    }
+
+    for (i = 0; i < n; i++) {
+        printf("Enter the Process Name, Arrival Time & Burst Time:");
+        scanf("%s%d%d", pn[i], &arr[i], &bur[i]);
+    }
+
+    /* FCFS scheduling calculations */
+    for (i = 0; i < n; i++) {
+        if (i == 0) {
+            start[i] = arr[i];
+        } else {
+            if (finish[i - 1] > arr[i])
+                start[i] = finish[i - 1];
+            else
+                start[i] = arr[i];
+        }
+
+        wt[i] = start[i] - arr[i];
+        finish[i] = start[i] + bur[i];
+        tat[i] = finish[i] - arr[i];
+
+        totwt += wt[i];
+        tottat += tat[i];
+    }
+
+    printf("\nPName Arrtime Burtime Start TAT Finish");
+    for (i = 0; i < n; i++) {
+        printf("\n%s\t%6d\t\t%6d\t%6d\t%6d\t%6d",
+               pn[i], arr[i], bur[i], start[i], tat[i], finish[i]);
+    }
+
+    printf("\nAverage Waiting time:%f", (float)totwt / n);
+    printf("\nAverage Turn Around Time:%f\n", (float)tottat / n);
+
+    return 0;
+}

@@ -1,0 +1,73 @@
+#include<stdio.h>
+
+struct process
+{
+    int burst, wait, comp, f;
+} p[20] = {0, 0};
+
+int main()
+{
+    int n, i, j, totalwait = 0, totalturn = 0, quantum, flag = 1, time = 0;
+    
+    printf("\nEnter The No Of Process :");
+    scanf("%d", &n);
+    printf("\nEnter The Quantum time (in ms) :");
+    scanf("%d", &quantum);
+    
+    for(i = 0; i < n; i++)
+    {
+        printf("Enter The Burst Time (in ms) For Process #%2d :", i+1);
+        scanf("%d", &p[i].burst);
+        p[i].f = 1;
+        p[i].comp = 0;
+        p[i].wait = 0;
+    }
+    
+    printf("\nOrder Of Execution \n");
+    printf("\nProcess\tStarting\tEnding\tRemaining");
+    printf("\n\tTime\t\tTime\tTime");
+    
+    while(flag == 1)
+    {
+        flag = 0;
+        for(i = 0; i < n; i++)
+        {
+            if(p[i].f == 1)
+            {
+                flag = 1;
+                if((p[i].burst - p[i].comp) > quantum)
+                {
+                    j = quantum;
+                    printf("\nprocess # %-3d %-10d %-10d %-10d", i+1, time, time+j, p[i].burst - p[i].comp - quantum);
+                    p[i].comp += quantum;
+                    time += quantum;
+                }
+                else
+                {
+                    j = p[i].burst - p[i].comp;
+                    printf("\nprocess # %-3d %-10d %-10d %-10d", i+1, time, time+j, 0);
+                    p[i].comp = p[i].burst;
+                    p[i].f = 0;
+                    p[i].wait = time - p[i].comp;
+                    time += j;
+                }
+            }
+        }
+    }
+    
+    printf("\n\n");
+    printf("\nProcess \t Waiting Time \t TurnAround Time ");
+    for(i = 0; i < n; i++)
+    {
+        printf("\nProcess # %-12d %-15d %-15d", i+1, p[i].wait, p[i].wait + p[i].burst);
+        totalwait += p[i].wait;
+        totalturn += p[i].wait + p[i].burst;
+    }
+    
+    printf("\n\nAverage");
+    printf("\n------------------ ");
+    printf("\nWaiting Time: %fms", totalwait/(float)n);
+    printf("\nTurnAround Time : %fms\n\n", totalturn/(float)n);
+    
+    return 0;
+}
