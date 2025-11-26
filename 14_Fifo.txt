@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main(){
+    int a[3],b[20],n,p=0,q=0,m=0,h,k,i; 
+    char f='F';
+    printf("Enter the Number of Pages: ");
+    scanf("%d",&n);
+    printf("Enter %d Page Numbers: ",n);
+    for(i=0;i<n;i++) scanf("%d",&b[i]);
+    printf("Page\tFrames\tFault\n");
+    for(i=0;i<n;i++){
+        p=0;
+        for(k=0;k<q;k++) if(b[i]==a[k]) p=1;
+        if(p==0){
+            if(q<3) a[q++]=b[i];
+            else{ a[0]=a[1]; a[1]=a[2]; a[2]=b[i]; }
+            m++;
+        }
+        printf("%d\t",b[i]);
+        for(h=0;h<q;h++) printf("%d ",a[h]);
+        if(p==0) printf("\t-->%c",f);
+        printf("\n");
+    }
+    printf("Total Page Faults = %d",m);
+    return 0;
+}

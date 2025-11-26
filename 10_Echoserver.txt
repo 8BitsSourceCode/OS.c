@@ -1,0 +1,62 @@
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+struct msg {
+    long mtype;
+    char mtext[20];
+} send, recv;
+
+int main() {
+    int qid, pid, len;
+
+    qid = msgget((key_t)0x2000, IPC_CREAT | 0666);
+
+    if(qid == -1) {
+        perror("Message queue creation failed");
+        exit(1);
+    }
+
+    send.mtype = 1;
+    strcpy(send.mtext, "hello i am parent");
+    len = strlen(send.mtext) + 1;
+
+    pid = fork();
+
+    if(pid > 0) {  
+        if(msgsnd(qid, &send, len, 0) == -1) {
+            perror("Parent message sending failed");
+            exit(1);
+        }
+        printf("\nParent posted message to child");
+
+        sleep(1);
+
+        if(msgrcv(qid, &recv, sizeof(recv.mtext), 2, 0) == -1) {
+            perror("Parent receive failed");
+            exit(1);
+        }
+        printf("\nParent received: %s\n", recv.mtext);
+    }
+    else {  
+        send.mtype = 2;
+        strcpy(send.mtext, "hi i am child");
+        len = strlen(send.mtext) + 1;
+
+        if(msgrcv(qid, &recv, sizeof(recv.mtext), 1, 0) == -1) {
+            perror("Child receive failed");
+            exit(1);
+        }
+        printf("\nChild received: %s", recv.mtext);
+
+        if(msgsnd(qid, &send, len, 0) == -1) {
+            perror("Child message send failed");
+            exit(1);
+        }
+        printf("\nChild sent reply to parent\n");
+    }
+    return 0;
+}

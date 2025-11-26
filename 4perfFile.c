@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <fcntl.h>
+
+int main() {
+    int fd[2];
+    char buf1[100] = "just a test\n"; 
+    char buf2[100];
+    ssize_t nbytes;
+    fd[0] = open("file3", O_RDWR | O_CREAT, 0644);
+    fd[1] = open("file4", O_RDWR | O_CREAT, 0644);
+    if (fd[0] < 0 || fd[1] < 0) {
+        perror("open");
+        return 1;
+    }
+    write(fd[0], buf1, strlen(buf1));
+    printf("\nEnter the text now: ");
+    if (fgets(buf1, sizeof(buf1), stdin) != NULL) {
+        write(fd[0], buf1, strlen(buf1));
+    }
+    lseek(fd[0], 0, SEEK_SET);
+    nbytes = read(fd[0], buf2, sizeof(buf2) - 1);
+    if (nbytes > 0) {
+        buf2[nbytes] = '\0';  
+        write(fd[1], buf2, nbytes);
+    }
+    close(fd[0]);
+    close(fd[1]);
+    printf("\nOperation completed.\n");
+    return 0;
+}

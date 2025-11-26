@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MSGSIZE 29
+
+int main(){
+    int ser[2], cli[2], pid;
+    char inbuff[MSGSIZE];
+    char msg[MSGSIZE] = "Thank you";
+
+    system("clear");
+
+    pipe(ser);
+    pipe(cli);
+
+    printf("\nServer read id = %d, write id = %d", ser[0], ser[1]);
+    printf("\nClient read id = %d, write id = %d", cli[0], cli[1]);
+
+    pid = fork();
+
+    if(pid == 0){
+        printf("\n\nChild Process (Client)");
+        close(cli[0]);
+        close(ser[1]);
+        write(cli[1], msg, strlen(msg) + 1);
+        printf("\nMessage written to pipe!");
+        sleep(1);
+        read(ser[0], inbuff, MSGSIZE);
+        printf("\nEcho message received from server:");
+        printf("\n%s\n", inbuff);
+    }
+    else{
+        printf("\n\nParent Process (Server)");
+        close(cli[1]);
+        close(ser[0]);
+        read(cli[0], inbuff, MSGSIZE);
+        write(ser[1], inbuff, strlen(inbuff) + 1);
+        printf("\nMessage echoed back to client!");
+    }
+
+    return 0;
+}

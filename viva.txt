@@ -1,0 +1,437 @@
+Below are clear, crisp viva answers for all the questions you listed. These are perfect for 2-mark / short viva answers.
+
+
+---
+
+✅ OPERATING SYSTEM VIVA ANSWERS (Short & Clear)
+
+
+---
+
+1. What is an operating system?
+
+An operating system (OS) is system software that manages hardware resources and provides services to applications and users.
+
+
+---
+
+2. What are short, long and medium-term scheduling?
+
+Long-term scheduler: Selects jobs from job pool → loads into ready queue.
+
+Medium-term scheduler: Swaps processes in/out of memory to reduce multiprogramming.
+
+Short-term scheduler: Selects which ready process gets CPU next.
+
+
+
+---
+
+3. Explain batched operating systems.
+
+Batched OS collects similar jobs into batches and executes them sequentially without user interaction.
+
+
+---
+
+4. Purpose of different operating systems?
+
+Different OS types serve different purposes: multitasking, real-time control, distributed computing, batch processing, mobile operation, etc.
+
+
+---
+
+5. What is virtual memory?
+
+Virtual memory is a memory management technique that gives an illusion of large memory by using disk space as RAM extension.
+
+
+---
+
+6. What is Throughput, Turnaround time, waiting time and Response time?
+
+Throughput: Number of processes completed per unit time.
+
+Turnaround time: Time from submission to completion.
+
+Waiting time: Time spent in ready queue.
+
+Response time: Time from request submission to first response.
+
+
+
+---
+
+7. Components of computer system?
+
+Hardware, Operating system, System programs, Application programs, Users.
+
+
+---
+
+8. What is a Real-Time System?
+
+A system where responses must be given within strict time constraints.
+
+
+---
+
+9. Explain distributed systems.
+
+A distributed system consists of multiple computers working together, appearing as a single system to users.
+
+
+---
+
+10. What are the different operating systems?
+
+Batch OS, Time-sharing OS, Distributed OS, Real-time OS, Network OS, Mobile OS, Multiprocessing OS.
+
+
+---
+
+11. What is busy waiting?
+
+Busy waiting occurs when a process continuously checks a condition in a loop instead of being put to sleep.
+
+
+---
+
+12. What are system calls?
+
+System calls are interfaces that allow user programs to request OS services.
+
+
+---
+
+13. What are scheduling queues?
+
+Job queue
+
+Ready queue
+
+Device queue
+These hold jobs in different stages of execution.
+
+
+
+---
+
+14. States of a process?
+
+New, Ready, Running, Waiting/Blocked, Terminated.
+
+
+---
+
+15. What is a job queue?
+
+Queue containing all jobs waiting to be admitted into the system.
+
+
+---
+
+16. What is a ready queue?
+
+Queue of all processes ready and waiting for CPU.
+
+
+---
+
+17. Turnaround time vs response time?
+
+Turnaround time: Completion time – submission time.
+
+Response time: Time until first CPU response.
+
+
+
+---
+
+18. OS components?
+
+Process management, Memory management, File system, I/O system, Security, Networking, Command interpreter.
+
+
+---
+
+19. Why is a thread called a lightweight process?
+
+Because it shares code, data, and resources of a process yet executes independently.
+
+
+---
+
+20. Operating system services?
+
+Program execution, I/O operations, File manipulation, Communication, Error detection, Resource allocation, Security.
+
+
+---
+
+21. What is a process?
+
+A program in execution.
+
+
+---
+
+22. Different job scheduling in OS?
+
+FCFS, SJF, Priority, Round Robin, Multilevel queue, Multilevel feedback queue.
+
+
+---
+
+23. What is dual-mode operation?
+
+OS operates in user mode and kernel mode to protect hardware and resources.
+
+
+---
+
+24. What is a device queue?
+
+Queue of processes waiting for I/O device.
+
+
+---
+
+25. Types of real-time scheduling?
+
+Rate Monotonic Scheduling (RMS), Earliest Deadline First (EDF), Least Laxity First (LLF).
+
+
+---
+
+26. What is starvation?
+
+A process waits indefinitely because resources are allocated to others.
+
+
+---
+
+27. What is long-term & short-term scheduler?
+
+Long-term: Controls degree of multiprogramming.
+
+Short-term: Selects next process to run on CPU.
+
+
+
+---
+
+28. What is fragmentation?
+
+Wasted memory.
+
+Internal fragmentation: Unused space inside allocated block.
+
+External fragmentation: Enough total memory but not contiguous.
+
+
+
+---
+
+29. State of the processor when a process is waiting?
+
+Blocked/Waiting state.
+
+
+---
+
+30. Difference between Primary and Secondary storage?
+
+Primary storage: Fast, volatile (RAM).
+
+Secondary storage: Slow, non-volatile (HDD/SSD).
+
+
+
+---
+
+31. Difference between Compiler and Interpreter?
+
+Compiler: Translates entire program at once.
+
+Interpreter: Translates line by line.
+
+
+
+---
+
+32. Functions of Scheduler?
+
+Selects processes, improves CPU utilization, reduces waiting/turnaround time, enforces fairness.
+
+
+---
+
+33. Local vs global page replacement?
+
+Local: Replacement within a process’s own pages.
+
+Global: Any process’s pages can be replaced.
+
+
+
+---
+
+34. Different operating systems?
+
+Windows, Linux, UNIX, macOS, Android, iOS, RTOS, Network OS, Distributed OS.
+
+
+---
+
+35. Basic functions of an OS?
+
+Memory management, CPU scheduling, Process control, File management, Device management, Security.
+
+
+---
+
+36. What is kernel?
+
+The core of OS controlling hardware, processes, and resources.
+
+
+---
+
+37. What is a process?
+
+A running instance of a program.
+
+
+---
+
+38. States of a process?
+
+New, Ready, Running, Waiting, Terminated.
+
+
+---
+
+40. What is starvation and aging?
+
+Starvation: A process never gets CPU.
+
+Aging: Increasing priority gradually to avoid starvation.
+
+
+
+---
+
+41. What is context switching?
+
+Saving and restoring CPU state during process switch.
+
+
+---
+
+42. What is a thread?
+
+Smallest unit of CPU execution within a process.
+
+
+---
+
+43. What is process synchronization?
+
+Coordination between processes to avoid race conditions.
+
+
+---
+
+44. What is virtual memory?
+
+Technique allowing execution of processes larger than physical memory using paging/swapping.
+
+
+---
+
+45. Fragmentation types?
+
+Internal fragmentation
+
+External fragmentation
+Explained above.
+
+
+
+---
+
+46. Logical vs Physical address space?
+
+Logical address: Generated by CPU.
+
+Physical address: Address in RAM.
+
+
+
+---
+
+47. What is MMU?
+
+Memory Management Unit maps logical addresses to physical addresses.
+
+
+---
+
+48. What is a Real-Time System?
+
+System where correctness depends on time of response.
+
+
+---
+
+49. What is process migration?
+
+Moving a process from one processor/machine to another.
+
+
+---
+
+50. Primary vs Secondary storage?
+
+(Same as Q30)
+Primary: Fast & volatile
+Secondary: Slow & permanent.
+
+
+---
+
+51. Define compaction.
+
+Technique to reduce external fragmentation by shifting processes to make contiguous memory.
+
+
+---
+
+52. Disadvantages of context switching?
+
+Overhead, CPU time wasted, cache invalidation, slower performance.
+
+
+---
+
+53. What is Dispatcher?
+
+Module that gives control of CPU to the process selected by the scheduler.
+
+
+---
+
+54. What is TLB?
+
+Translation Lookaside Buffer is a cache that stores recent address translations to speed up memory access.
+
+
+---
+
+If you want, I can also create:
+✅ PDF
+✅ Word (DOCX)
+with all answers neatly formatted.
+
+Just say "make PDF" or "make Word file".

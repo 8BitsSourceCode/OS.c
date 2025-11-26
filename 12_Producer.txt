@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main(){
+    int buffer[10], bufsize = 10, in = 0, out = 0;
+    int produce, consume, choice = 0;
+
+    while(choice != 3){
+        printf("\n1. Produce \t2. Consume \t3. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice){
+            case 1:
+                if((in + 1) % bufsize == out){
+                    printf("\nBuffer is Full!\n");
+                }
+                else{
+                    printf("\nEnter the value: ");
+                    scanf("%d", &produce);
+                    buffer[in] = produce;
+                    in = (in + 1) % bufsize;
+                    printf("Produced: %d\n", produce);
+                }
+                break;
+
+            case 2:
+                if(in == out){
+                    printf("\nBuffer is Empty!\n");
+                }
+                else{
+                    consume = buffer[out];
+                    out = (out + 1) % bufsize;
+                    printf("\nConsumed value: %d\n", consume);
+                }
+                break;
+
+            case 3:
+                printf("\nExiting...\n");
+                break;
+
+            default:
+                printf("\nInvalid Choice!");
+        }
+    }
+    return 0;
+}

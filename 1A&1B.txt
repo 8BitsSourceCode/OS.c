@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main()
+{
+    pid_t id, childid;
+    id = getpid();
+
+    childid = fork();
+    if (childid < 0) {
+        perror("fork failed");
+        return 1;
+    }
+    if (childid > 0) {
+        printf("\nI am in the parent process %d", id);
+        printf("\nI am in the parent process %d", getpid());
+        printf("\nI am in the parent process %d\n", getppid());
+    } else {
+        printf("\nI am in child process %d", id);
+        printf("\nI am in the child process %d", getpid());
+        printf("\nI am in the child process %d\n", getppid());
+    }
+    return 0;
+}
+
+
+
+b
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main()
+{
+    int i, pid;
+    pid = fork();
+    if (pid == -1) {
+        printf("fork failed");
+        exit(0);
+    }
+    else if (pid == 0) {
+        printf("\nChild process starts");
+        for (i = 0; i < 5; i++) {
+            printf("\nChild process %d is called", i);
+        }
+        printf("\nChild process ends\n");
+        exit(0);
+    }
+    else {
+        wait(NULL);
+        printf("\nParent process ends\n");
+        exit(0);
+    }
+}
